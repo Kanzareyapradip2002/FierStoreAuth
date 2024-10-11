@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { app } from "./firebase"; 
+import { app } from "../firebase"; 
 import {
     addDoc,
     collection,
@@ -57,12 +57,12 @@ function Frome() {
   const Submit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const collectionRef = collection(db, 'users'); // Firestore collection
+      const collectionRef = collection(db, 'users'); 
       if (editIndex === null) {
-        await addDoc(collectionRef, inputValue); // Add new user
+        await addDoc(collectionRef, inputValue); 
       } else {
-        const docRef = doc(collectionRef, items[editIndex].id); // Get document reference
-        await updateDoc(docRef, inputValue); // Update existing user
+        const docRef = doc(collectionRef, items[editIndex].id); 
+        await updateDoc(docRef, inputValue); 
         setEditIndex(null);
       }
       setInputValue({
@@ -71,22 +71,22 @@ function Frome() {
         password: "",
         gender: "",
       });
-      setIsChecked(false); // Reset checkbox after submit
-      fetchItems(); // Refresh the items
+      setIsChecked(false); 
+      fetchItems(); 
     }
   };
 
   const fetchItems = async () => {
-    const collectionRef = collection(db, 'users'); // Firestore collection
+    const collectionRef = collection(db, 'users'); 
     const snapshot = await getDocs(collectionRef);
-    const userData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })); // Include document ID
+    const userData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })); 
     setItems(userData);
   };
 
   const DeleteData = async (index) => {
-    const docRef = doc(db, 'users', items[index].id); // Get document reference
-    await deleteDoc(docRef); // Delete user from Firestore
-    fetchItems(); // Refresh the items
+    const docRef = doc(db, 'users', items[index].id); 
+    await deleteDoc(docRef); 
+    fetchItems(); 
   };
 
   const EditData = (index) => {
@@ -95,7 +95,7 @@ function Frome() {
   };
 
   useEffect(() => {
-    fetchItems(); // Fetch items on component mount
+    fetchItems();
   }, []);
 
   return (

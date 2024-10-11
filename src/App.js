@@ -1,13 +1,14 @@
-import React from 'react'
-import Frome from './Frome'
+import React, { useState } from 'react';
+import Login from './Component/Login' 
+import From from './Component/Frome'; 
 import './App.css'
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <Frome/>
-    </div>
-  )
+    <>
+    <Login/>
+    </>
+  );
 }
 
-export default App
+export default App;
